@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1048414300019",
+    "project_id": "visorapp-34ab2",
+    "storage_bucket": "visorapp-34ab2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048414300019:android:89d454dfca1b0e91f90706",
+        "android_client_info": {
+          "package_name": "com.bionica.visor_prueba3"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1s8ckQScrmbP1GKg6KXr9GLAMVuXDaFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

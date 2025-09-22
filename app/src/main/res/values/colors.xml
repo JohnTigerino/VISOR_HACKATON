@@ -10,4 +10,10 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Colores del background -->
+    <color name="grad_start">#18C2B5</color>
+    <color name="grad_mid">#2FA9C9</color>
+    <color name="grad_end">#2E63A8</color>
+
 </resources>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_register">
+
+    <ImageView
+        android:id="@+id/img_fondo"
+        android:layout_width="458dp"
+        android:layout_height="432dp"
+        android:layout_marginTop="138dp"
+        android:layout_marginBottom="161dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cuadro_removebg_preview" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="281dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="59dp"
+        app:layout_constraintTop_toTopOf="@+id/img_fondo"
+        tools:layout_editor_absoluteX="65dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="125dp"
+        android:layout_marginEnd="124dp"
+        android:fontFamily="@font/arimo_semibold"
+        android:gravity="center"
+        android:text="Crear Cuenta"
+        android:textColor="#7A7A7A"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/space"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="214dp" />
+
+    <TextView
+        android:id="@+id/txtnombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="309dp" />
+
+    <TextView
+        android:id="@+id/txtnumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Numero:"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="343dp" />
+
+    <TextView
+        android:id="@+id/txtpassw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contreseña:"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="379dp" />
+
+    <TextView
+        android:id="@+id/txt_olc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Olvidaste la contraseña?"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="415dp" />
+
+    <Button
+        android:id="@+id/btn_ingresar_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="317dp"
+        android:layout_marginBottom="67dp"
+        android:text="Ingresar"
+        app:layout_constraintBottom_toBottomOf="@+id/img_fondo"
+        app:layout_constraintTop_toTopOf="@+id/img_fondo"
+        tools:layout_editor_absoluteX="155dp" />
+
+    <EditText
+        android:id="@+id/editTxtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="359dp" />
+
+    <EditText
+        android:id="@+id/editTxtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="320dp" />
+
+    <EditText
+        android:id="@+id/editTxtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text=" "
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <LinearLayout
+        android:layout_width="12dp"
+        android:layout_height="19dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="66dp"
+        tools:layout_editor_absoluteY="329dp"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/vector_1"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="249dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
