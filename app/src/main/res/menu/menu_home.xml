@@ -1,0 +1,5 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/act_search" android:icon="@drawable/ic_search_24" android:title="Buscar" android:showAsAction="always"/>
+    <item android:id="@+id/act_list"   android:icon="@drawable/ic_view_list_24" android:title="Lista" android:showAsAction="always"/>
+    <item android:id="@+id/act_bell"   android:icon="@drawable/ic_notifications_24" android:title="Avisos" android:showAsAction="always"/>
+</menu>

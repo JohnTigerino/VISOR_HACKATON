@@ -11,148 +11,128 @@
         android:layout_width="373dp"
         android:layout_height="420dp"
         android:src="@drawable/rectangle_3"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="100dp"
         android:fontFamily="@font/arimo_semibold"
         android:gravity="center"
         android:text="Crear Cuenta"
         android:textColor="#7A7A7A"
-        android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/img"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.586" />
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/img_fondo"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toTopOf="@+id/img_fondo" />
 
     <TextView
         android:id="@+id/txtnombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
         android:text="Nombre:"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <TextView
-        android:id="@+id/txtnumber"
+        android:id="@+id/txtcorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:text="Numero:"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/txtnombre" />
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        android:text="Correo:"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombre" />
 
     <TextView
         android:id="@+id/txtpassw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         android:text="Contreseña:"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/txtnumber" />
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/txtcorreo" />
 
     <TextView
         android:id="@+id/txt_olc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
         android:text="¿Olvidaste la contraseña?"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/editTxtPassword" />
+        android:textColor="#2970B7"
+        app:layout_constraintBottom_toTopOf="@+id/btn_ingresar_reg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintVertical_bias="0.82" />
 
     <Button
         android:id="@+id/btn_ingresar_reg"
         android:layout_width="170dp"
         android:layout_height="59dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/btn_ingresar"
         android:text="Ingresar"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/txt_olc" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_fondo"
+        app:layout_constraintEnd_toEndOf="@+id/img_fondo"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo" />
 
     <EditText
         android:id="@+id/editTxtPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
+        android:layout_width="246dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/txtpassw"
-        app:layout_constraintTop_toTopOf="@+id/editTxtPhone" />
-
-    <EditText
-        android:id="@+id/editTxtPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/txtnumber"
-        app:layout_constraintTop_toTopOf="@+id/editTxtName" />
+        app:layout_constraintBottom_toTopOf="@+id/txt_olc"
+        app:layout_constraintStart_toStartOf="@+id/txtpassw"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <EditText
         android:id="@+id/editTxtName"
         android:layout_width="249dp"
         android:layout_height="40dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
         android:text=" "
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtnombre"
-        app:layout_constraintTop_toTopOf="@+id/imageView5" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="125dp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/img_fondo"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
         app:layout_constraintTop_toTopOf="@+id/img_fondo"
         app:srcCompat="@drawable/vector_1" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="47dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="358dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="176dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="541dp" />
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="222dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="9dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toEndOf="@+id/txtcorreo"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

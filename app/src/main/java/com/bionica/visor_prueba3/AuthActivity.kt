@@ -24,13 +24,10 @@ class AuthActivity : AppCompatActivity() {
         bundle.putString("message", "Integración de Firebase completa")
         analytics.logEvent("InitScreen", bundle)
 
-        //crearCuenta()
         val btnCrearCuenta = findViewById<Button>(R.id.btn_Crear_Cuenta)
         btnCrearCuenta.setOnClickListener {
-            startActivity(Intent(this, Register_Activity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
-    /*private fun crearCuenta() {
 
-    }*/
 }
