@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Auth_Activity">
+    tools:context=".AuthActivity">
 
     <Button
-        android:id="@+id/btn_crear_cuenta"
+        android:id="@+id/btn_Crear_Cuenta"
         android:layout_width="170dp"
         android:layout_height="57dp"
         android:layout_marginStart="129dp"
@@ -59,7 +59,7 @@
         android:text="Ingresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_crear_cuenta" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Crear_Cuenta" />
 
     <ImageView
         android:id="@+id/imageView3"

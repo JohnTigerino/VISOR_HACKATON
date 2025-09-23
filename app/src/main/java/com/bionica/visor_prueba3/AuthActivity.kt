@@ -1,13 +1,15 @@
 package com.bionica.visor_prueba3
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import android.widget.Button
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.analytics.FirebaseAnalytics
 
-class Auth_Activity : AppCompatActivity() {
+class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,5 +23,14 @@ class Auth_Activity : AppCompatActivity() {
         val bundle = Bundle()
         bundle.putString("message", "Integración de Firebase completa")
         analytics.logEvent("InitScreen", bundle)
+
+        //crearCuenta()
+        val btnCrearCuenta = findViewById<Button>(R.id.btn_Crear_Cuenta)
+        btnCrearCuenta.setOnClickListener {
+            startActivity(Intent(this, Register_Activity::class.java))
+        }
     }
+    /*private fun crearCuenta() {
+
+    }*/
 }

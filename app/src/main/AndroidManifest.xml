@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- xmlns:tools="http://schemas.android.com/tools" // No se esta usando por el momento por eso esta comentado-->
+
+    <uses-permission android:name="android.permission.INTERNET" />  <!-- NECESARIO para Firebase por que da permisos de internet -->
 
     <application
         android:allowBackup="true"
@@ -12,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VISOR_PRUEBA3">
         <activity
-            android:name=".Auth_Activity"
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,6 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Register_Activity"
+            android:exported="true"
+            android:label="@string/title_register"
+            android:parentActivityName=".AuthActivity">
+            <!-- Para compatibilidad con versiones antiguas del soporte -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AuthActivity" />
+        </activity>
+
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
