@@ -1,32 +1,32 @@
-package com.bionica.visor
-
+package com.bionica.visor_prueba3
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
 import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bionica.visor_prueba3.HomeActivity
-import com.bionica.visor_prueba3.R
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import androidx.wear.compose.material.Button
+
+//import com.google.firebase.auth.FirebaseAuth
+//import com.google.firebase.auth.FirebaseUser
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
+//    private lateinit var auth: FirebaseAuth
 
-    companion object {
+    /* companion object {
         private const val TAG = "RegisterActivity"
         private const val MIN_PASSWORD = 6
-    }
+    } */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        auth = FirebaseAuth.getInstance()
+        val btnIngresar = findViewById<Button>(R.id.btn_ingresar_reg)
+
+        btnIngresar.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
+       /* auth = FirebaseAuth.getInstance()
 
         val etEmail = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val etPassword = findViewById<EditText>(R.id.editTxtPassword)
@@ -46,27 +46,28 @@ class RegisterActivity : AppCompatActivity() {
                 etPassword.error = "Mínimo $MIN_PASSWORD caracteres"; etPassword.requestFocus(); return@setOnClickListener
             }
 
-            crearUsuario(email, pass)
+            crearUsuario(email, pass)*/
         }
     }
 
-    private fun crearUsuario(email: String, password: String) {
-        // === Este es tu snippet de Firebase, integrado ===
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    updateUI(user)    // ve a Home o muestra mensaje
-                } else {
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(this, task.exception?.localizedMessage ?: "Error al crear la cuenta", Toast.LENGTH_LONG).show()
-                    updateUI(null)
-                }
-            }
-    }
 
-    private fun updateUI(user: FirebaseUser?) {
+/* private fun crearUsuario(email: String, password: String) {
+     // === Este es tu snippet de Firebase, integrado ===
+     auth.createUserWithEmailAndPassword(email, password)
+         .addOnCompleteListener(this) { task ->
+             if (task.isSuccessful) {
+                 Log.d(TAG, "createUserWithEmail:success")
+                 val user = auth.currentUser
+                 updateUI(user)    // ve a Home o muestra mensaje
+             } else {
+                 Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                 Toast.makeText(this, task.exception?.localizedMessage ?: "Error al crear la cuenta", Toast.LENGTH_LONG).show()
+                 updateUI(null)
+             }
+         }
+ }*/
+
+    /*private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             // ejemplo: ir a Home y cerrar registro
             startActivity(Intent(this, HomeActivity::class.java))
@@ -75,4 +76,5 @@ class RegisterActivity : AppCompatActivity() {
             // te quedas en la misma pantalla; podrías mostrar estados/errores
         }
     }
-}
+}*/
+

@@ -81,6 +81,6 @@ app/
 **Equipo VISOR**
 
 * Massiel Torrez – 📧 [massielt054@gmail.com](mailto:massielt054@gmail.com) – 📱 +505 7823-1150
-* Gonzalo Gonzalez – 📱 +505 7782-4923
+* Gonzalo Centeno – 📧 [gonzalocenteno343@gmail.com] 📱 +505 7782-4923
 * Shari Ramirez – 📧 [shariramirez239@gmail.com](mailto:shariramirez239@gmail.com) – 📱 +505 7519-2157
 * John Tigerino – 📧 [johntigerino2103@gmail.com](mailto:johntigerino2103@gmail.com) – 📱 +505 8523-5193

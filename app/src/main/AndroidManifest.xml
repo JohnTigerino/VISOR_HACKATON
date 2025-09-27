@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- xmlns:tools="http://schemas.android.com/tools" // No se esta usando por el momento por eso esta comentado-->
 
     <uses-permission android:name="android.permission.INTERNET" />  <!-- NECESARIO para Firebase por que da permisos de internet -->
@@ -27,14 +28,16 @@
             android:name=".RegisterActivity"
             android:exported="true"
             android:label="@string/title_register"
-            android:parentActivityName=".AuthActivity">
+            android:parentActivityName=".AuthActivity"
+            tools:ignore="MissingClass">
             <!-- Para compatibilidad con versiones antiguas del soporte -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".AuthActivity" />
         </activity>
-
-
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:resource="@string/google_api_key" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
