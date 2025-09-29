@@ -4,33 +4,31 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
 class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
-    private lateinit var mapView: MapView
-    private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        mapView = findViewById(R.id.mapView)
-
-        var mapViewBundle: Bundle? = null
-        if (savedInstanceState != null) {
-            mapViewBundle = savedInstanceState.getBundle(MAPVIEW_BUNDLE_KEY)
-        }
-        mapView.onCreate(mapViewBundle)
-        mapView.getMapAsync(this) // carga el mapa asincrónicamente
-
+        createFragment()
     }
 
+    private fun createFragment(){
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync { this }
+    }
     override fun onMapReady(googleMap: GoogleMap) {
-        // Controles de UI
-        googleMap.uiSettings.isZoomControlsEnabled = true
+
+        map = googleMap
+        createMarker()
+
+        /*googleMap.uiSettings.isZoomControlsEnabled = true
         googleMap.uiSettings.isCompassEnabled = true
         googleMap.uiSettings.isZoomGesturesEnabled = true
         googleMap.uiSettings.isRotateGesturesEnabled = true
@@ -48,10 +46,20 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         // Mi ubicación (requiere permiso fine/coarse location concedido)
         // if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
         //     googleMap.isMyLocationEnabled = true
-        // }
+        // }*/
+    }
+    private fun createMarker() {
+        val coordenadas = LatLng(12.420324887210588, -86.8717269759507)
+        val marker = MarkerOptions().position(coordenadas).title("León")
+        map.addMarker(marker)
+        map.animateCamera(
+            CameraUpdateFactory.newLatLngZoom(coordenadas, 18f),
+            4000,
+            null
+        )
     }
 
-    override fun onResume() { super.onResume(); mapView.onResume() }
+    /*override fun onResume() { super.onResume(); mapView.onResume() }
     override fun onStart() { super.onStart(); mapView.onStart() }
     override fun onStop() { super.onStop(); mapView.onStop() }
     override fun onPause() { mapView.onPause(); super.onPause() }
@@ -65,5 +73,5 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
             outState.putBundle(MAPVIEW_BUNDLE_KEY, mapViewBundle)
         }
         mapView.onSaveInstanceState(mapViewBundle)
-    }
+    }*/
 }

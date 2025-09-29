@@ -32,8 +32,8 @@ class AuthActivity : AppCompatActivity() {
             val etPass = dialogView.findViewById<EditText>(R.id.etPassword)
 
             val dialog = MaterialAlertDialogBuilder(this)
-                .setTitle("Iniciar sesión")
                 .setView(dialogView)
+                .setTitle("Iniciar sesión")
                 .setNegativeButton("Cancelar", null)
                 .setPositiveButton("Entrar") { _, _ ->
                     val email = etEmail.text.toString().trim()

@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_register">
+    <!-- Text Registrarse -->
 
     <!-- Cuadro blanco-->
     <ImageView
         android:id="@+id/img_fondo"
-        android:layout_width="373dp"
-        android:layout_height="420dp"
+        android:layout_width="392dp"
+        android:layout_height="487dp"
         android:src="@drawable/rectangle_3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Text Registrarse -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="100dp"
         android:fontFamily="@font/arimo_semibold"
         android:gravity="center"
@@ -41,8 +39,9 @@
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintEnd_toEndOf="@+id/img_fondo"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="@+id/img_fondo"
         app:layout_constraintTop_toTopOf="@+id/img_fondo"
         app:srcCompat="@drawable/vector_1" />
@@ -54,11 +53,11 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="20dp"
         android:text="Nombre:"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/img_fondo"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <!-- EditText Nombre-->
-
     <EditText
         android:id="@+id/editTxtName"
         android:layout_width="249dp"
@@ -67,81 +66,106 @@
         android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="text"
-        android:text=" "
+        android:text=""
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtnombre"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-
-    <TextView
-        android:id="@+id/txtcorreo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:text="Correo:"
-        app:layout_constraintStart_toStartOf="@+id/img_fondo"
-        app:layout_constraintTop_toBottomOf="@+id/txtnombre" />
 
     <!-- EditText Correo-->
 
     <!-- Edit Password-->
 
+    <TextView
+        android:id="@+id/txtOcupación"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:text="Ocupación:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/txtnombre" />
+
+    <Spinner
+        android:id="@+id/spinnerRoles"
+        android:layout_width="233dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toEndOf="@+id/txtOcupación"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtName"/>
+
+    <TextView
+        android:id="@+id/txtcorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="22dp"
+        android:text="Correo:"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/txtOcupación" />
+
     <EditText
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="248dp"
         android:layout_height="35dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/txtcorreo"
-        app:layout_constraintTop_toBottomOf="@+id/editTxtName" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRoles" />
 
     <TextView
         android:id="@+id/txtpassw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
         android:text="Contreseña:"
-        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcorreo" />
 
     <EditText
         android:id="@+id/editTxtPassword"
-        android:layout_width="234dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="235dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/txt_olc"
-        app:layout_constraintStart_toStartOf="@+id/txtpassw"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/txtpassw"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
     <TextView
         android:id="@+id/txt_olc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="20dp"
-        android:text="Repetir Contraseña:"
+        android:layout_width="110dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="32dp"
+        android:text="Verificar contraseña:"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/btn_ingresar_reg"
-        app:layout_constraintStart_toStartOf="@+id/img_fondo" />
+        app:layout_constraintStart_toStartOf="@+id/img_fondo"
+        app:layout_constraintTop_toBottomOf="@+id/txtpassw"
+        app:layout_constraintVertical_bias="0.238" />
 
     <EditText
         android:id="@+id/editTxtPassword2"
         android:layout_width="189dp"
         android:layout_height="42dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPassword"
         android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/txtpassw"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintStart_toEndOf="@+id/txt_olc"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtPassword" />
 
     <Button
         android:id="@+id/btn_ingresar_reg"
@@ -149,10 +173,11 @@
         android:layout_height="59dp"
         android:layout_marginStart="101dp"
         android:layout_marginEnd="102dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="88dp"
         android:background="@drawable/btn_ingresar"
         android:text="Ingresar"
         app:layout_constraintBottom_toBottomOf="@+id/img_fondo"
         app:layout_constraintEnd_toEndOf="@+id/img_fondo"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="@+id/img_fondo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
