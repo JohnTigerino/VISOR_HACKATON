@@ -46,12 +46,10 @@ dependencies {
     implementation(libs.androidx.mediarouter)
     implementation(libs.play.services.maps)
     implementation(libs.androidx.compose.material)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.google.android.gms:play-services-maps:19.2.0")
-    //dependencias de Firebase
-    /*implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-analytics-ktx")*/
+
 }

@@ -1,8 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"/>
+    tools:context=".HomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Toolbar con logo (imagen) e íconos blancos -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/bg_register"
+            app:title=""
+            android:paddingStart="16dp"
+            android:paddingEnd="8dp">
+
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="start|center_vertical"
+                android:src="@drawable/frame_24_removebg_preview"
+                android:contentDescription="@string/app_name"/>
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <!-- Título que se actualiza con la dirección seleccionada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Mi terreno"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:paddingStart="4dp"
+                android:src="@drawable/ic_location_24"
+                app:tint="?attr/colorOnSurfaceVariant" />
+        </LinearLayout>
+
+        <!-- Botones arriba del mapa -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDireccion"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Dirección"
+                app:icon="@drawable/ic_search_24"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                android:layout_marginEnd="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubirImagen"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Subir imagen"
+                app:icon="@drawable/ic_camera_24"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Contenedor del mapa, altura reducida -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardMap"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardUseCompatPadding="true">
+
+            <!-- Contenedor para superponer el panel -->
+            <FrameLayout
+                android:id="@+id/mapContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- El fragmento del mapa -->
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <!-- Cajita de botones flotantes (siempre visible) -->
+                <!-- Cajita de botones flotantes (siempre visible) -->
+                <LinearLayout
+                    android:id="@+id/mapControls"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="12dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_controls_panel"
+                    android:paddingHorizontal="6dp"
+                    android:elevation="8dp"
+                    android:gravity="center_vertical">
+
+
+                <!-- Reglas Material: contenedor 36dp, icono 24dp, padding 6dp -->
+                    <ImageButton
+                        android:id="@+id/btnFullscreen"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/pantalla_completa"
+                        app:srcCompat="@drawable/fullscreen"
+                        android:scaleType="centerInside"/>
+
+                    <ImageButton
+                        android:id="@+id/btnSelect"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/seleccionar_area"
+                        app:srcCompat="@drawable/selection_area"
+                    android:scaleType="centerInside"
+                    android:layout_marginStart="6dp"/>
+
+                    <ImageButton
+                        android:id="@+id/btnConfirm"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/confirmar"
+                        app:srcCompat="@drawable/confirm"
+                        android:scaleType="centerInside"
+                        android:layout_marginStart="6dp"/>
+
+                    <ImageButton
+                        android:id="@+id/btnUndo"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:padding="6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/Eliminar"
+                        app:srcCompat="@drawable/delete"
+                        android:scaleType="centerInside"
+                        android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <!-- Texto de ayuda debajo del mapa -->
+        <TextView
+            android:id="@+id/tvHelp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:text="@string/selecci_n_del_rea"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="24dp"
+            android:text="@string/escribe_la_direcci_n_o_sube_una_imagen_del_terreno_que_deseas_analizar"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

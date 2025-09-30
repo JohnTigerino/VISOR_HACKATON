@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.VISOR_PRUEBA3" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
@@ -6,4 +6,14 @@
     </style>
 
     <style name="Theme.VISOR_PRUEBA3" parent="Base.Theme.VISOR_PRUEBA3" />
+
+    <style name="ThemeOverlay.VISOR.ToolbarPopup" parent="ThemeOverlay.Material3.Light">
+        <!-- Fondo del popup -->
+        <item name="colorSurface">@android:color/white</item>
+        <!-- Color del texto/íconos dentro del popup -->
+        <item name="colorOnSurface">@android:color/black</item>
+        <!-- Asegura texto negro (para compatibilidad) -->
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
 </resources>

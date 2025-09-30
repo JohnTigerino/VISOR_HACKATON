@@ -1,13 +1,36 @@
-<!-- Archivo donde se crea el toolbar para la pantalla principal (HomeActivity) -->
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/act_search" android:icon="@drawable/ic_search_24" android:iconTint="@color/white"
-        android:title="Buscar" app:actionViewClass="android.widget.SearchView" app:showAsAction="always" />
-    <item android:id="@+id/act_list"   android:icon="@drawable/ic_lista" android:iconTint="@color/white"
-        android:title="Lista" app:showAsAction="always"/>
-    <item android:id="@+id/act_bell"   android:icon="@drawable/ic_aviso" android:iconTint="@color/white"
-        android:title="Avisos" app:showAsAction="always"/>
-    <item android:id="@+id/act_account" android:icon="@drawable/ic_account_circle_24" android:iconTint="@color/white"
-        android:title="Cuenta" app:showAsAction="always" />
+    <!-- SearchView (se expande al tocar el ícono de lupa) -->
+    <item
+        android:id="@+id/busqueda"
+        android:title="@string/busqueda"
+        android:icon="@drawable/ic_search_24"
+        android:iconTint="@android:color/white"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+    <!-- Lista (placeholder) -->
+    <item
+        android:id="@+id/lista"
+        android:title="@string/lista"
+        android:icon="@drawable/outline_article_24"
+        android:iconTint="@android:color/white"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Campana (muestra snackbar) -->
+    <item
+        android:id="@+id/alerta"
+        android:title="@string/alerta"
+        android:icon="@drawable/outline_circle_notifications_24"
+        android:iconTint="@android:color/black"
+        app:showAsAction="ifRoom"/>
+
+    <!-- Usuario (abre diálogo) -->
+    <item
+        android:id="@+id/infoUser"
+        android:title="@string/infoUsuario"
+        android:icon="@drawable/outline_account_box_24"
+        android:iconTint="@android:color/black"
+        app:showAsAction="ifRoom"/>
 </menu>

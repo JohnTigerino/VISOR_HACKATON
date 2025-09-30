@@ -2,4 +2,16 @@
     <string name="app_name" translatable="false">VISOR_PRUEBA3</string>
     <string name="title_register" />
     <string name="Registrarse">Registrarse</string>
+    <string name="busqueda">busqueda</string>
+    <string name="lista" />
+    <string name="alerta" />
+    <string name="infoUsuario" />
+    <string name="añadir_marcador" />
+    <string name="centrar_mapa" />
+    <string name="pantalla_completa" />
+    <string name="seleccionar_area" />
+    <string name="confirmar" />
+    <string name="Eliminar" />
+    <string name="escribe_la_direcci_n_o_sube_una_imagen_del_terreno_que_deseas_analizar">Escribe la dirección o sube una imagen del terreno que deseas analizar</string>
+    <string name="selecci_n_del_rea">Selección del área</string>
 </resources>

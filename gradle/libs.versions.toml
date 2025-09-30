@@ -16,6 +16,7 @@ mediarouter = "1.8.1"
 playServicesBom = "22.0.0"
 playServicesMaps = "19.2.0"
 composeMaterial = "1.5.2"
+playServicesLocation = "21.3.0"
 
 [libraries]
 androidx-core-ktx       = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ androidx-mediarouter = { group = "androidx.mediarouter", name = "mediarouter", v
 play-services-bom = { module = "com.google.android.gms:play-services-bom", version.ref = "playServicesBom" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 androidx-compose-material = { group = "androidx.wear.compose", name = "compose-material", version.ref = "composeMaterial" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 android-application     = { id = "com.android.application", version.ref = "agp" }
