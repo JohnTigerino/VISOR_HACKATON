@@ -50,6 +50,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.constraintlayout)
     implementation("com.google.android.gms:play-services-maps:19.2.0")
 
 }

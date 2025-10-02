@@ -38,7 +38,6 @@ class AuthActivity : AppCompatActivity() {
                 .setPositiveButton("Entrar") { _, _ ->
                     val email = etEmail.text.toString().trim()
                     val pass = etPass.text.toString()
-                    // aquí haces tu lógica de login (Firebase Auth, etc.)
                     Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
                 }
                 .create()

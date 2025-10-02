@@ -8,7 +8,7 @@
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     tools:context=".AuthActivity">
-
+<!-- ImageView que contiene la imagen del logo de la app-->
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="204dp"
@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/capa_1" />
-
+<!-- Boton para registrarse en la app -->
     <Button
         android:id="@+id/btn_Crear_Cuenta"
         android:layout_width="170dp"

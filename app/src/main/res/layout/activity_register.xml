@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_register">
-    <!-- Text Registrarse -->
 
     <!-- Cuadro blanco-->
-
     <ImageView
         android:id="@+id/img_fondo"
         android:layout_width="392dp"
@@ -19,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <!-- Text Registrarse -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -73,10 +71,6 @@
         app:layout_constraintStart_toEndOf="@+id/txtnombre"
         app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
-    <!-- EditText Correo-->
-
-    <!-- Edit Password-->
-
     <TextView
         android:id="@+id/txtOcupación"
         android:layout_width="wrap_content"
@@ -98,7 +92,7 @@
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toEndOf="@+id/txtOcupación"
         app:layout_constraintTop_toBottomOf="@+id/editTxtName"/>
-
+    <!-- EditText Correo-->
     <TextView
         android:id="@+id/txtcorreo"
         android:layout_width="wrap_content"
@@ -132,7 +126,7 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtcorreo" />
-
+    <!-- Edit Password-->
     <EditText
         android:id="@+id/editTxtPassword"
         android:layout_width="235dp"

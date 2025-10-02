@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".HomeActivity">
 
     <LinearLayout
@@ -117,7 +118,6 @@
                     android:layout_height="match_parent"/>
 
                 <!-- Cajita de botones flotantes (siempre visible) -->
-                <!-- Cajita de botones flotantes (siempre visible) -->
                 <LinearLayout
                     android:id="@+id/mapControls"
                     android:layout_width="wrap_content"
@@ -179,6 +179,214 @@
 
             </FrameLayout>
         </com.google.android.material.card.MaterialCardView>
+
+        <!-- Panel que se muestra tras confirmar el área -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/analysisPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp"
+            android:visibility="gone">
+
+            <!-- Guías para 2 columnas (50/50) -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="16dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineMid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="16dp" />
+
+            <!-- ============ CARD 1: Plagas (arriba-izquierda) ============ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPlagas"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:strokeWidth="1dp"
+                app:strokeColor="@android:color/darker_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toStartOf="@id/guidelineMid"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconBgPlagas"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardBackgroundColor="#FFC928"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/monitor_de_plagas"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvTitlePlagas"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Monitor de plagas"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:breakStrategy="simple"
+                        android:hyphenationFrequency="none"
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toEndOf="@id/iconBgPlagas"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ============ CARD 2: Salud (arriba-derecha) ============ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSalud"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:strokeWidth="1dp"
+                app:strokeColor="@android:color/darker_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guidelineMid"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconBgSalud"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardBackgroundColor="#2EC3A8"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/monitor_de_consejos"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvTitleSalud"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Monitor de salud y Consejos"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:breakStrategy="simple"
+                        android:hyphenationFrequency="none"
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toEndOf="@id/iconBgSalud"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ============ CARD 3: Humedad (debajo de Plagas, col izq) ============ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHumedad"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                app:cardCornerRadius="12dp"
+                app:cardUseCompatPadding="true"
+                app:strokeWidth="1dp"
+                app:strokeColor="@android:color/darker_gray"
+                app:layout_constraintTop_toBottomOf="@id/cardPlagas"
+                app:layout_constraintStart_toStartOf="@id/guidelineStart"
+                app:layout_constraintEnd_toStartOf="@id/guidelineMid"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/iconBgHumedad"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardBackgroundColor="#2F6DB3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="10dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/monitor_de_humedad"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvTitleHumedad"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Monitor de humedad"
+                        android:textSize="13sp"
+                        android:textColor="?attr/colorOnSurface"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        android:breakStrategy="simple"
+                        android:hyphenationFrequency="none"
+                        android:includeFontPadding="false"
+                        app:layout_constraintStart_toEndOf="@id/iconBgHumedad"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <!-- Texto de ayuda debajo del mapa -->
