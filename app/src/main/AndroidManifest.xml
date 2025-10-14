@@ -46,6 +46,11 @@
             android:exported="true"
             android:parentActivityName=".HomeActivity" />
 
+        <activity
+            android:name=".AnalisisActivity"
+            android:exported="true"
+            android:parentActivityName=".AnalisisActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
