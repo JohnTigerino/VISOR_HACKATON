@@ -34,8 +34,6 @@ En pocas palabras: **una herramienta digital que acerca la tecnología al campo,
 4. Conectar un emulador o dispositivo físico.
 5. Ejecutar con el botón ▶️ (Run).
 
-> ⚡ Opcional: si usas Firebase, recuerda agregar tu archivo `google-services.json` en la carpeta `/app`.
-
 ---
 
 ## ✨ Funcionalidades iniciales
@@ -51,7 +49,7 @@ En pocas palabras: **una herramienta digital que acerca la tecnología al campo,
 
 * **Android**: Kotlin, AndroidX, Material 3
 * **Arquitectura**: MVVM (sugerida), ViewModel, LiveData/Flow
-* **Firebase** (opcional): Auth, Firestore, Storage, FCM
+* **Firebase**: Auth, Firestore, Storage, FCM
 
 ---
 
@@ -84,3 +82,5 @@ app/
 * Gonzalo Centeno – 📧 [gonzalocenteno343@gmail.com] 📱 +505 7782-4923
 * Shari Ramirez – 📧 [shariramirez239@gmail.com](mailto:shariramirez239@gmail.com) – 📱 +505 7519-2157
 * John Tigerino – 📧 [johntigerino2103@gmail.com](mailto:johntigerino2103@gmail.com) – 📱 +505 8523-5193
+* Oscar Mojica – 📧 [o.gabrielbarrera@gmail.com](mailto:o.gabrielbarrera@gmail) – 📱 +505 8129 0891
+
