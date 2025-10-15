@@ -29,7 +29,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val spinner: Spinner = findViewById(R.id.spinnerRoles)
-        val opciones = listOf("Productores", "Estudiantes", "Investigadores", "Técnicos")
+        val opciones = listOf("Productor", "Estudiante", "Investigador", "Técnico")
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
@@ -43,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         spinner.adapter = adapter
 
         btnIngresar.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            //startActivity(Intent(this, HomeActivity::class.java))
 
             val email = editTextEmailAddress.text.toString().trim()
             val password = editTxtPassword.text.toString().trim()
@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // Registro exitoso
                     Toast.makeText(baseContext, "Cuenta creada exitosamente.", Toast.LENGTH_SHORT).show()
-
+                    startActivity(Intent(this, HomeActivity::class.java))
                     // Un punto clave: Al crear un usuario, Firebase lo autentica automáticamente.
                     // Aquí puedes navegar a tu actividad principal.
                     // val intent = Intent(this, HomeActivity::class.java)

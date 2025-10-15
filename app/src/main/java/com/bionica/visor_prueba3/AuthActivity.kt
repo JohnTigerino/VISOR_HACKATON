@@ -101,6 +101,12 @@ class AuthActivity : AppCompatActivity() {
                         else -> "Fallo en la autenticación: ${exception?.message}"
                     }
                     Toast.makeText(baseContext, mensajeError, Toast.LENGTH_LONG).show()
+                    //===
+                    val btn_ingresar = findViewById<Button>(R.id.btn_ingresar)
+                    btn_ingresar.setOnClickListener {
+                        return@setOnClickListener
+                    }
+
                 }
             }
     }
