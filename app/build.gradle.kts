@@ -7,7 +7,9 @@ plugins {
 android {
     namespace = "com.bionica.visor_prueba3"
     compileSdk = 36
-
+    buildFeatures {
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "com.bionica.visor_prueba3"
         minSdk = 26
