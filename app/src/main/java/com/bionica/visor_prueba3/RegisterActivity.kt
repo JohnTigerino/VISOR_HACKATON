@@ -13,7 +13,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         val spinner: Spinner = findViewById(R.id.spinnerRoles)
-        val opciones = listOf("Productores", "Estudiantes", "Investigadores", "Técnicos")
+        val opciones = listOf("Productor", "Estudiante", "Investigador", "Técnico")
         val adapter = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
