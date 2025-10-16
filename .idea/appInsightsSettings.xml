@@ -10,9 +10,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.bionica.visor_prueba3" />
-                  <option name="mobileSdkAppId" value="1:1048414300019:android:89d454dfca1b0e91f90706" />
-                  <option name="projectId" value="visorapp-34ab2" />
-                  <option name="projectNumber" value="1048414300019" />
+                  <option name="mobileSdkAppId" value="1:911751482191:android:a60fb8a8d04e42ea3b933a" />
+                  <option name="projectId" value="visor-hackaton" />
+                  <option name="projectNumber" value="911751482191" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
