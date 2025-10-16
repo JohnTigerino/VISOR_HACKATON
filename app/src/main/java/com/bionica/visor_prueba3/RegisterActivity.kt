@@ -1,5 +1,6 @@
 package com.bionica.visor_prueba3
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -8,6 +9,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.gestures.Orientation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
@@ -38,6 +40,7 @@ class RegisterActivity : AppCompatActivity() {
         val btnIngresar = findViewById<Button>(R.id.btn_ingresar_reg)
         val editTextEmailAddress = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val editTxtPassword = findViewById<EditText>(R.id.editTxtPassword)
+        val btnRegresar = findViewById<Button>(R.id.btn_regresar)  //+
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -63,8 +66,14 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
-        //version de la pagina de firebase autenticacion con correo
+        //=====
+        btnRegresar.setOnClickListener {
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
 
+        //=====Evitar cambio de orientacion=====
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
     //=======================================================================
     private fun registrarUsuarioConFirebase(email: String, password: String) {
