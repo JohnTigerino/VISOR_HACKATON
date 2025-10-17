@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     //id("com.android.application")
+    //id("org.jetbrains.kotlin.android")
+    //id("com.android.application")
     //id("com.google.gms.google-services")
 }
 
@@ -20,13 +22,18 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:8080/api_tareas/\"")
+        }
+
         release {
+            buildConfigField("String", "BASE_URL", "\"http://10.0.1.130:8080/api_tareas/\"")
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
         }
     }
     compileOptions {
@@ -62,5 +69,15 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth")
+    //=====
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
 
 }
