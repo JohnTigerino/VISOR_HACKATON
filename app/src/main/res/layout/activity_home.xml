@@ -83,13 +83,13 @@
                 android:layout_marginEnd="8dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSubirImagen"
+                android:id="@+id/btnAnalisisIA"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="Subir imagen"
-                app:icon="@drawable/ic_camera_24"
+                android:text="Analisis con IA"
+                app:icon="@drawable/imagen"
                 app:iconGravity="textStart"
                 app:iconSize="18dp"
                 android:layout_marginStart="8dp"/>

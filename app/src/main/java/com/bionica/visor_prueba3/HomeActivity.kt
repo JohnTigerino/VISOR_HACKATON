@@ -1,6 +1,8 @@
 package com.bionica.visor_prueba3
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.location.Address
@@ -73,6 +75,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // ---------------------- Ciclo de vida ----------------------
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -100,10 +103,13 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
 
-        // Placeholder subir imagen
-        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnSubirImagen)
+        //Analisis con IA 4ta interfaz
+        findViewById<com.google.android.material.button.MaterialButton>(R.id.btnAnalisisIA)
             .setOnClickListener {
-                Snackbar.make(findViewById(R.id.map), "Subir imagen (pendiente)", Snackbar.LENGTH_SHORT).show()
+                // Crear el Intent hacia AnalisisActivity
+                val intent = Intent(this, AnalisisActivity::class.java)
+                // Iniciar la nueva Activity
+                startActivity(intent)
             }
 
         // Map fragment
@@ -120,7 +126,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         findViewById<ImageButton>(R.id.btnUndo).setOnClickListener { undoLastPoint() }
 
         //=====Evitar cambio de orientacion=====
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
