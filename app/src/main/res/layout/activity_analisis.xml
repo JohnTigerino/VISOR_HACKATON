@@ -16,6 +16,7 @@
         android:background="@drawable/bg_register"
         android:paddingStart="16dp"
         android:paddingEnd="8dp"
+        app:title=""
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -29,6 +30,19 @@
             android:contentDescription="@string/app_name"
             android:src="@drawable/frame_24_removebg_preview" />
     </com.google.android.material.appbar.MaterialToolbar>
+
+    <!-- PROGRESS OVERLAY -->
+    <ProgressBar
+        android:id="@+id/prog"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationZ="8dp"/>
 
     <!-- CONTENIDO SCROLEABLE BAJO LA TOOLBAR -->
     <ScrollView

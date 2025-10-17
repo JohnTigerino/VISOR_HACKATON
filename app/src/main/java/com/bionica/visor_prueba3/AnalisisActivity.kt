@@ -26,20 +26,17 @@ class AnalisisActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnalisisBinding
     private lateinit var classifier: ImageClassifierHelper
 
-    // Galería (Photo Picker)
     private val pickImage =
         registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri: Uri? ->
             uri?.let { onImageReady(it) }
         }
 
-    // Permiso de cámara
     private val requestCameraPermission =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
             if (granted) openCamera() else
                 Toast.makeText(this, "Permiso de cámara denegado", Toast.LENGTH_SHORT).show()
         }
 
-    // Cámara (bitmap preview)
     private val takePicturePreview =
         registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bmp: Bitmap? ->
             bmp?.let {
@@ -51,12 +48,12 @@ class AnalisisActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
         binding = ActivityAnalisisBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
 
-        // Modelo en assets/modelo_cnn.tflite
+        // Sin threshold para asegurar resultados mientras probás el pipeline
         classifier = ImageClassifierHelper(this)
 
         binding.btnGaleria.setOnClickListener {
@@ -64,24 +61,22 @@ class AnalisisActivity : AppCompatActivity() {
         }
 
         binding.btnCamara.setOnClickListener {
+            // Desde Android 13 (API 33) PickVisualMedia no requiere permiso para galería,
+            // pero para cámara sí: mantenemos esta lógica simple y compatible.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestCameraPermission.launch(Manifest.permission.CAMERA)
             } else openCamera()
         }
 
-        binding.btnAnalizar.setOnClickListener {
-            runInferenceFromImageView()
-        }
+        binding.btnAnalizar.setOnClickListener { runInferenceFromImageView() }
     }
 
-    /** Estado cuando ya hay imagen seleccionada. */
     private fun showPickedState() {
         binding.boxPick.visibility = View.GONE
         binding.imgPreview.visibility = View.VISIBLE
         binding.btnAnalizar.visibility = View.VISIBLE
     }
 
-    /** Imagen desde galería. */
     private fun onImageReady(uri: Uri) {
         showPickedState()
         val bmp = loadBitmapFromUri(uri)
@@ -97,7 +92,6 @@ class AnalisisActivity : AppCompatActivity() {
         takePicturePreview.launch(null)
     }
 
-    /** Corre inferencia tomando el Bitmap actual del ImageView. */
     private fun runInferenceFromImageView() {
         val bmp = (binding.imgPreview.drawable as? Drawable)?.toBitmapSafely()
         if (bmp == null) {
@@ -105,20 +99,20 @@ class AnalisisActivity : AppCompatActivity() {
             return
         }
 
-        // UI: progreso
         binding.btnAnalizar.isEnabled = false
-        binding.progress.visibility = View.VISIBLE
+        binding.prog.visibility = View.VISIBLE
         binding.cardResultado.visibility = View.GONE
 
         lifecycleScope.launch {
-            val results = withContext(Dispatchers.Default) {
-                classifier.classify(bmp)  // List<Pair<label, score>>
+            val results: List<Pair<String, Float>> = withContext(Dispatchers.Default) {
+                // AHORA sí: pares (labelMostrar, scoreFloat)
+                classifier.classifyTopLabels(bmp)
             }
 
-            binding.progress.visibility = View.GONE
+            binding.prog.visibility = View.GONE
             binding.btnAnalizar.isEnabled = true
 
-            if (results.isEmpty()) {
+            if (!results.isEmpty()) {
                 mostrarResultado("Sin resultados")
             } else {
                 val texto = results.joinToString("\n") { (label, score) ->
@@ -129,13 +123,11 @@ class AnalisisActivity : AppCompatActivity() {
         }
     }
 
-    /** Mostrar tarjeta de resultados. */
     private fun mostrarResultado(texto: String) {
         binding.cardResultado.visibility = View.VISIBLE
         binding.tvResumen.text = texto
     }
 
-    /** Bitmap desde Uri (API-safe). */
     private fun loadBitmapFromUri(uri: Uri): Bitmap? = try {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val source = ImageDecoder.createSource(contentResolver, uri)
@@ -147,12 +139,10 @@ class AnalisisActivity : AppCompatActivity() {
             MediaStore.Images.Media.getBitmap(contentResolver, uri)
         }
     } catch (e: Exception) {
-        e.printStackTrace()
-        null
+        e.printStackTrace(); null
     }
 }
 
-/** Extensión segura: Drawable -> Bitmap. */
 private fun Drawable.toBitmapSafely(): Bitmap {
     return when (this) {
         is BitmapDrawable -> this.bitmap
