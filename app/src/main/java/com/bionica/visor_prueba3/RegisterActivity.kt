@@ -1,22 +1,30 @@
 package com.bionica.visor_prueba3
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+//import androidx.compose.foundation.gestures.Orientation
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.bionica.visor_prueba3.data.model.User
+//import com.bionica.visor_prueba3.data.model.ApiResponse
+import com.bionica.visor_prueba3.network.ApiService
 
 
 
 class RegisterActivity : AppCompatActivity() {
+    private val api = ApiService.create()    //instancia para la api
 
     //declarar la instancia de firebase
     private lateinit var auth: FirebaseAuth
@@ -38,6 +46,7 @@ class RegisterActivity : AppCompatActivity() {
         val btnIngresar = findViewById<Button>(R.id.btn_ingresar_reg)
         val editTextEmailAddress = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val editTxtPassword = findViewById<EditText>(R.id.editTxtPassword)
+        val btnRegresar = findViewById<Button>(R.id.btn_regresar)  //+
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -62,15 +71,85 @@ class RegisterActivity : AppCompatActivity() {
         }
 
 
+        //=====
+        btnRegresar.setOnClickListener {
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
 
-        //version de la pagina de firebase autenticacion con correo
+        //=====Evitar cambio de orientacion=====
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
+        //==========Prueba de la conexion con la api para la bd ==========
+        /**lifecycleScope.launch {
+
+            val email = editTextEmailAddress.text.toString().trim()
+            val password = editTxtPassword.text.toString().trim()
+            val name = findViewById<EditText>(R.id.editTxtName)
+
+            try {
+                // Paso 1: crear usuario en Firebase
+                FirebaseAuth.getInstance()
+                    .createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val firebaseUser = task.result?.user
+                            val newUser = User(
+                                id = 0, // lo asigna tu backend
+                                Nombre = name,
+                                email = firebaseUser?.email ?: email
+                            )
+
+                            // Paso 2: registrar en tu API
+                            lifecycleScope.launch {
+                                try {
+                                    val response = ApiService.create().createUser(newUser)
+                                    if (response.success) {
+                                        // Usuario registrado en ambos lados
+                                        Log.d("Register", "Usuario creado: ${response.data}")
+                                    } else {
+                                        Log.e("Register", "Error API: ${response.message}")
+                                    }
+                                } catch (e: Exception) {
+                                    e.printStackTrace()
+                                }
+                            }
+                        } else {
+                            Log.e("Register", "Error Firebase: ${task.exception?.message}")
+                        }
+                    }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }***/
     }
     //=======================================================================
     private fun registrarUsuarioConFirebase(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
+                    val name = findViewById<EditText>(R.id.editTxtName).text.toString()
+
+                    val firebaseUser = task.result?.user
+                    val newUser = User(
+                        //id = 0, // lo asigna tu backend
+                        Nombre = name,
+                        Correo = firebaseUser?.email ?: email
+                    )
+
+                    lifecycleScope.launch {
+                        try {
+                            val response = ApiService.create().createUser(newUser)
+                            if (response.success) {
+                                // Usuario registrado en ambos lados
+                                Log.d("Register", "Usuario creado: ${response.data}")
+                            } else {
+                                Log.e("Register", "Error API: ${response.message}")
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }
                     // Registro exitoso
                     Toast.makeText(baseContext, "Cuenta creada exitosamente.", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, HomeActivity::class.java))

@@ -1,6 +1,7 @@
 package com.bionica.visor_prueba3
 
 import android.Manifest
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
@@ -117,6 +118,9 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         findViewById<ImageButton>(R.id.btnSelect).setOnClickListener { toggleSelectionMode() }
         findViewById<ImageButton>(R.id.btnConfirm).setOnClickListener { confirmAreaSelection() }
         findViewById<ImageButton>(R.id.btnUndo).setOnClickListener { undoLastPoint() }
+
+        //=====Evitar cambio de orientacion=====
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

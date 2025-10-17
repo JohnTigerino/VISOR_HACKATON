@@ -16,6 +16,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth        //no
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import android.content.pm.ActivityInfo
 
 
 class AuthActivity : AppCompatActivity() {
@@ -55,7 +56,7 @@ class AuthActivity : AppCompatActivity() {
                 .setPositiveButton("Entrar") { _, _ ->
                     val email = etEmail.text.toString().trim()
                     val pass = etPass.text.toString()
-                    Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
 
                     //logica firebase inicio de sesion
 
@@ -64,7 +65,11 @@ class AuthActivity : AppCompatActivity() {
                         iniciarSesionConFirebase(email, pass)
                     } else {
                         Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
+                        //======
+                          //cambiar
                     }
+                    //=====
+
                 }
                 .create()
 
@@ -76,13 +81,13 @@ class AuthActivity : AppCompatActivity() {
         btnCrearCuenta.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         } 
-        //=================================================================================
-
+        //====================================Evitar cambio de orientacion=============================================
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     //======================================================================================
-    private fun iniciarSesionConFirebase(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
+    private fun iniciarSesionConFirebase(email: String, password: String) {  //pass password
+        auth.signInWithEmailAndPassword(email, password)           //pass password
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Inicio de sesión exitoso
@@ -101,11 +106,27 @@ class AuthActivity : AppCompatActivity() {
                         else -> "Fallo en la autenticación: ${exception?.message}"
                     }
                     Toast.makeText(baseContext, mensajeError, Toast.LENGTH_LONG).show()
-                    //===
-                    val btn_ingresar = findViewById<Button>(R.id.btn_ingresar)
-                    btn_ingresar.setOnClickListener {
-                        return@setOnClickListener
-                    }
+                    //==================================================================================
+                    //val dialogView = LayoutInflater.from(this)
+                    //    .inflate(R.layout.dialog_singin, null, false)
+
+                   // val etEmail = dialogView.findViewById<EditText>(R.id.etEmail)
+                   // val etPass = dialogView.findViewById<EditText>(R.id.etPassword)
+
+                    //val dialog = MaterialAlertDialogBuilder(this)
+                       // .setView(dialogView)
+                       // .setTitle("Iniciar sesión")
+                       // .setNegativeButton("Cancelar", null)
+                        //.setPositiveButton("Entrar") { _, _ ->
+                         //   val email = etEmail.text.toString().trim()
+                        //    val pass = etPass.text.toString()
+                            //Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
+
+                            //logica firebase inicio de sesion
+                      //  }
+                      //  .create()
+
+                    //dialog.show()
 
                 }
             }
