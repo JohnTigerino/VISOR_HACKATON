@@ -137,7 +137,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun onToolbarItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.lista -> { Snackbar.make(findViewById(R.id.map), "Lista (pendiente)", Snackbar.LENGTH_SHORT).show(); true }
+            //R.id.lista -> { Snackbar.make(findViewById(R.id.map), "Lista (pendiente)", Snackbar.LENGTH_SHORT).show(); true }
             R.id.alerta -> { Snackbar.make(findViewById(R.id.map), "No hay alertas por el momento", Snackbar.LENGTH_LONG).show(); true }
             R.id.infoUser -> {
                 MaterialAlertDialogBuilder(this)

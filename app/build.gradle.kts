@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("com.google.gms.google-services")
     //id("com.android.application")
-    //id("com.google.gms.google-services")
 }
 
 android {
@@ -56,6 +55,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.constraintlayout)
     implementation("com.google.android.gms:play-services-maps:19.2.0")
+    implementation("com.google.android.material:material:1.12.0")
     //Import the Firebase BoM
     implementation (platform("com.google.firebase:firebase-bom:34.3.0"))
     implementation("com.google.firebase:firebase-analytics")
