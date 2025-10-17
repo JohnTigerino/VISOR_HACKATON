@@ -5,11 +5,15 @@ import com.bionica.visor_prueba3.data.model.ApiResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
     @POST("usuarios.php")                      //busca el endpoint de usuarios.php
     suspend fun createUser(@Body user: User): ApiResponse<User>
+
+    @GET("users")
+    suspend fun getByEmail(@Query("email") email: String): ApiResponse<User?> //17/10/25 04:20
 
     //buscar el endpoint del login
     @POST("login.php")
@@ -17,6 +21,7 @@ interface ApiService {
 
     @GET("users")
     suspend fun listUsers(): ApiResponse<List<User>>
+    fun getUserByEmail(correo: String)
 
     //@POST("users")
     //suspend fun createUser(@Body user: User): ApiResponse<User>

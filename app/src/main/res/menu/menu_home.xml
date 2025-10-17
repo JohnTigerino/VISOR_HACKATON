@@ -33,4 +33,10 @@
         android:icon="@drawable/outline_account_box_24"
         android:iconTint="@android:color/black"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_foro"
+        android:title="Foro"
+        android:icon="@drawable/ic_forum_24"
+        app:showAsAction="always"/>
 </menu>

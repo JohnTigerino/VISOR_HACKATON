@@ -177,16 +177,17 @@
         app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="@+id/img_fondo" />
 
-    <Button
-        android:id="@+id/btn_regresar"
-        android:layout_width="167dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginEnd="102dp"
-        android:layout_marginBottom="88dp"
-        android:text="Regresar"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/img_fondo"
-        app:layout_constraintHorizontal_bias="0.473"
-        app:layout_constraintStart_toStartOf="@+id/textView" />
+    <ImageButton
+        android:id="@+id/btnCerrar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="122dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Cerrar"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/black" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

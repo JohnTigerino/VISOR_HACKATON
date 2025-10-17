@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,14 +21,15 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.bionica.visor_prueba3.data.model.User
 //import com.bionica.visor_prueba3.data.model.ApiResponse
 import com.bionica.visor_prueba3.network.ApiService
-
-
+import android.opengl.ETC1.isValid
 
 class RegisterActivity : AppCompatActivity() {
     private val api = ApiService.create()    //instancia para la api
 
     //declarar la instancia de firebase
     private lateinit var auth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +45,17 @@ class RegisterActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             opciones
         )
+        //val Rol =   spinner.selectedItem.toString()  //guardamos la seleccion del spinner
+
+        //Guardar elementos de la vista en variables para usar
         val btnIngresar = findViewById<Button>(R.id.btn_ingresar_reg)
         val editTextEmailAddress = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val editTxtPassword = findViewById<EditText>(R.id.editTxtPassword)
-        val btnRegresar = findViewById<Button>(R.id.btn_regresar)  //+
+        val editTxtPassword2 = findViewById<EditText>(R.id.editTxtPassword2)
+
+
+        val btnCerrar = findViewById< ImageButton>(R.id.btnCerrar)  //+
+        //const Estado = ;
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -56,25 +65,45 @@ class RegisterActivity : AppCompatActivity() {
 
             val email = editTextEmailAddress.text.toString().trim()
             val password = editTxtPassword.text.toString().trim()
+            val password2 = editTxtPassword2.text.toString().trim()  //se usa para la comparacion de contrasenas
+            //cons isValid,
+            //val spinner = spinner.selectedItem.toString()
+
             //parte del codigo para registro segun video de mouradev
             if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
                 Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (editTxtPassword.length() < 6) {
+            if (editTxtPassword.length() < 6 || editTxtPassword2.length() < 6) {
                 Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
+            //contrasenas iguales
+            if (password != password2){
+                Toast.makeText(this, "Las contraseñas deben ser iguales.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Validar formato de correo
+            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                editTextEmailAddress.error = "Correo inválido"
+                return@setOnClickListener
+                //isValid = false
+            }
+
+            //if (!isValid) return@setOnClickListener
             //llamar a la funcion
             registrarUsuarioConFirebase(email, password);
         }
 
 
         //=====
-        btnRegresar.setOnClickListener {
-            val intent = Intent(this, AuthActivity::class.java)
-            startActivity(intent)
+        btnCerrar.setOnClickListener {
+            //val intent = Intent(this, AuthActivity::class.java)
+            //startActivity(intent)
+            finish()
         }
 
         //=====Evitar cambio de orientacion=====
@@ -129,12 +158,17 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val name = findViewById<EditText>(R.id.editTxtName).text.toString()
+                    val Estado = "Activo"
+                    val spinner: Spinner = findViewById(R.id.spinnerRoles)
+                    val Rol = spinner.selectedItem.toString()
 
                     val firebaseUser = task.result?.user
                     val newUser = User(
                         //id = 0, // lo asigna tu backend
                         Nombre = name,
-                        Correo = firebaseUser?.email ?: email
+                        Correo = firebaseUser?.email ?: email,
+                        Estado = Estado,
+                        Rol = Rol
                     )
 
                     lifecycleScope.launch {

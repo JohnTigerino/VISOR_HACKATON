@@ -17,6 +17,7 @@ import com.google.firebase.auth.auth        //no
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import android.content.pm.ActivityInfo
+import androidx.appcompat.app.AlertDialog
 
 
 class AuthActivity : AppCompatActivity() {
@@ -41,8 +42,8 @@ class AuthActivity : AppCompatActivity() {
             insets
         }
 
-        val btn_ingresar = findViewById<Button>(R.id.btn_ingresar)
-        btn_ingresar.setOnClickListener {
+        val btnIngresar = findViewById<Button>(R.id.btn_ingresar)
+        btnIngresar.setOnClickListener {
             val dialogView = LayoutInflater.from(this)
                 .inflate(R.layout.dialog_singin, null, false)
 
@@ -53,82 +54,106 @@ class AuthActivity : AppCompatActivity() {
                 .setView(dialogView)
                 .setTitle("Iniciar sesión")
                 .setNegativeButton("Cancelar", null)
-                .setPositiveButton("Entrar") { _, _ ->
-                    val email = etEmail.text.toString().trim()
-                    val pass = etPass.text.toString()
-                    //Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
-
-                    //logica firebase inicio de sesion
-
-                    if (email.isNotEmpty() && pass.isNotEmpty()) {
-                        // Aquí llamamos a la función de Firebase
-                        iniciarSesionConFirebase(email, pass)
-                    } else {
-                        Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show()
-                        //======
-                          //cambiar
-                    }
-                    //=====
-
-                }
+                .setPositiveButton("Entrar", null) // importante: null aquí
                 .create()
 
-            dialog.show()
-                //btn movido
+            dialog.setOnShowListener {
+                val btnEntrar = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                btnEntrar.setOnClickListener {
+                    val email = etEmail.text.toString().trim()
+                    val pass = etPass.text.toString()
 
+                    var isValid = true
+                    etEmail.error = null
+                    etPass.error = null
+
+                    // Validar campos vacíos
+                    if (email.isEmpty()) {
+                        etEmail.error = "El correo es obligatorio"
+                        isValid = false
+                    }
+                    if (pass.isEmpty()) {
+                        etPass.error = "La contraseña es obligatoria"
+                        isValid = false
+                    }
+
+                    // Validar formato de correo
+                    if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                        etEmail.error = "Correo inválido"
+                        isValid = false
+                    }
+
+                    // Validar longitud mínima de contraseña
+                    if (pass.length < 6) {
+                        etPass.error = "Mínimo 6 caracteres"
+                        isValid = false
+                    }
+
+                    if (!isValid) return@setOnClickListener
+
+                    // 👉 Llamada a Firebase
+                    auth.signInWithEmailAndPassword(email, pass)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(this, "Autenticación exitosa.", Toast.LENGTH_SHORT)
+                                    .show()
+                                dialog.dismiss() // cerrar solo en éxito
+                                startActivity(Intent(this, HomeActivity::class.java))
+                            } else {
+                                val exception = task.exception
+                                val mensajeError = when (exception) {
+                                    is FirebaseAuthInvalidUserException -> {
+                                        etEmail.error = "El correo no está registrado"
+                                        "El correo electrónico no está registrado."
+                                    }
+
+                                    is FirebaseAuthInvalidCredentialsException -> {
+                                        etPass.error = "Contraseña incorrecta"
+                                        "La contraseña es incorrecta."
+                                    }
+
+                                    else -> "Fallo en la autenticación: ${exception?.message}"
+                                }
+                                Toast.makeText(this, mensajeError, Toast.LENGTH_LONG).show()
+                                // No cerramos el diálogo aquí
+                            }
+                        }
+                }
+            }
+
+            dialog.show()
         }
+
         val btnCrearCuenta = findViewById<Button>(R.id.btn_Crear_Cuenta)
         btnCrearCuenta.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        } 
-        //====================================Evitar cambio de orientacion=============================================
+        }
+
+// Evitar cambio de orientación
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-    }
-
-    //======================================================================================
-    private fun iniciarSesionConFirebase(email: String, password: String) {  //pass password
+        /**private fun iniciarSesionConFirebase(email: String, password: String) {  //pass password
         auth.signInWithEmailAndPassword(email, password)           //pass password
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Inicio de sesión exitoso
-                    val user = auth.currentUser
-                    Toast.makeText(baseContext, "Autenticación exitosa.", Toast.LENGTH_SHORT).show()
-                    // ir a otra actividad
-                     val intent = Intent(this, HomeActivity::class.java)
-                     startActivity(intent)
-                    // finish()
-                } else {
-                    // Si el inicio de sesión falla, muestra un mensaje al usuario.
-                    val exception = task.exception
-                    val mensajeError = when (exception) {
-                        is FirebaseAuthInvalidUserException -> "El correo electrónico no está registrado."
-                        is FirebaseAuthInvalidCredentialsException -> "La contraseña es incorrecta."
-                        else -> "Fallo en la autenticación: ${exception?.message}"
-                    }
-                    Toast.makeText(baseContext, mensajeError, Toast.LENGTH_LONG).show()
-                    //==================================================================================
-                    //val dialogView = LayoutInflater.from(this)
-                    //    .inflate(R.layout.dialog_singin, null, false)
-
-                   // val etEmail = dialogView.findViewById<EditText>(R.id.etEmail)
-                   // val etPass = dialogView.findViewById<EditText>(R.id.etPassword)
-
-                    //val dialog = MaterialAlertDialogBuilder(this)
-                       // .setView(dialogView)
-                       // .setTitle("Iniciar sesión")
-                       // .setNegativeButton("Cancelar", null)
-                        //.setPositiveButton("Entrar") { _, _ ->
-                         //   val email = etEmail.text.toString().trim()
-                        //    val pass = etPass.text.toString()
-                            //Toast.makeText(this, "email=$email", Toast.LENGTH_SHORT).show()
-
-                            //logica firebase inicio de sesion
-                      //  }
-                      //  .create()
-
-                    //dialog.show()
-
-                }
-            }
+        .addOnCompleteListener(this) { task ->
+        if (task.isSuccessful) {
+        // Inicio de sesión exitoso
+        val user = auth.currentUser
+        Toast.makeText(baseContext, "Autenticación exitosa.", Toast.LENGTH_SHORT).show()
+        // ir a otra actividad
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        // finish()
+        } else {
+        // Si el inicio de sesión falla, muestra un mensaje al usuario.
+        val exception = task.exception
+        val mensajeError = when (exception) {
+        is FirebaseAuthInvalidUserException -> "El correo electrónico no está registrado."
+        is FirebaseAuthInvalidCredentialsException -> "La contraseña es incorrecta."
+        else -> "Fallo en la autenticación: ${exception?.message}"
+        }
+        Toast.makeText(baseContext, mensajeError, Toast.LENGTH_LONG).show()
+        //==================================================================================
+        }
+        }
+        }***/
     }
 }

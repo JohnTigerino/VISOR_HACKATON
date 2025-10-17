@@ -35,6 +35,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
+//17/10/2025 05:11
+import android.widget.Toast
+import com.bionica.visor_prueba3.network.ApiService
+import com.google.firebase.auth.FirebaseAuth
+
 
 class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -144,11 +149,32 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
             R.id.lista -> { Snackbar.make(findViewById(R.id.map), "Lista (pendiente)", Snackbar.LENGTH_SHORT).show(); true }
             R.id.alerta -> { Snackbar.make(findViewById(R.id.map), "No hay alertas por el momento", Snackbar.LENGTH_LONG).show(); true }
             R.id.infoUser -> {
-                MaterialAlertDialogBuilder(this)
-                    .setTitle("Usuario")
-                    .setMessage("Nombre: John\nCorreo: john@gmail.com\nRol: Estudiante\nEstado: Activo")
-                    .setPositiveButton("Cerrar", null)
-                    .show()
+                //cargar los datos del usuario
+                /**lifecycleScope.launch {
+                    try {
+                        val correo = FirebaseAuth.getInstance().currentUser?.email ?: return@launch
+                        val user = withContext(Dispatchers.IO) { api.getUserByEmail(correo) }   // <-- AQUÍ se obtiene el usuario
+
+                        if (user != null) {
+                            MaterialAlertDialogBuilder(this@HomeActivity)
+                                .setTitle("Usuario")
+                                .setMessage(
+                                    "Nombre: ${user.Nombre}\n" +
+                                            "Correo: ${user.Correo}\n" +
+                                            "Rol: ${user.Rol}\n" +
+                                            "Estado: ${user.Estado}"
+                                )
+                                .setPositiveButton("Cerrar", null)
+                                .show()
+                        } else {
+                            Toast.makeText(this@HomeActivity, "Usuario no encontrado", Toast.LENGTH_SHORT).show()
+                        }
+
+                    } catch (e: Exception) {
+                        Toast.makeText(this@HomeActivity, "Error al cargar usuario: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+                }***/
+
                 true
             }
             else -> false
@@ -357,3 +383,6 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
 // Utilidad
 private fun Double.format(digits: Int) = "%.${digits}f".format(this)
+
+
+//17/10/2025 05:20
