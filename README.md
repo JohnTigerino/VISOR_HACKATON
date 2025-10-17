@@ -1,86 +1,84 @@
-# VISOR 🌱
+# 🌱 VISOR – Plataforma de Diagnóstico y Conexión Agrícola Inteligente
 
-*Cuidamos del campo contigo.*
-
----
-
-## 📖 Propósito del proyecto
-
-**VISOR** es una aplicación móvil Android para productores agrícolas.
-Permite **analizar cultivos**, recibir **alertas tempranas**, y consultar **recomendaciones personalizadas** con apoyo de IA e imágenes. Además, incluye monitoreo de humedad, plagas y módulos multigrano (frijol, soja, maíz).
-
-En pocas palabras: **una herramienta digital que acerca la tecnología al campo, ayudando al productor a tomar mejores decisiones.**
+**VISOR** es una aplicación móvil desarrollada en **Android Studio (Kotlin)** que permite a los productores agrícolas obtener un diagnóstico inteligente del estado de sus cultivos, acceder a información meteorológica y participar en una comunidad digital de colaboración.  
+El proyecto integra inteligencia artificial, base de datos MySQL mediante API, autenticación con Firebase, y arquitectura MVVM para garantizar escalabilidad y mantenibilidad.
 
 ---
 
-## ⚙️ Instalación y ejecución
+## 🚀 Características Principales
 
-### Requisitos
+### 🔍 Diagnóstico Inteligente
+- Clasificación de enfermedades en cultivos mediante un modelo **TensorFlow Lite (tflite)**.
+- Captura de imágenes desde cámara o galería.
+- Procesamiento local y visualización de resultados con porcentaje de confianza.
+- Posibilidad de almacenar resultados en Firestore o MySQL (según configuración).
 
-* Android Studio **Koala/Giraffe o superior**
-* **JDK 17** (incluido en Android Studio)
-* Min SDK **26** (Android 8)
+### 👥 Autenticación y Gestión de Usuarios
+- **Firebase Authentication** (correo y contraseña).
+- Validación de correo electrónico.
+- Recuperación de contraseña.
+- Perfil de usuario con datos cargados desde la base de datos.
 
-### Pasos
+### 🌐 Backend Integrado (API + MySQL)
+- Servidor Node.js / Express optimizado con conexión **pool** a MySQL.
+- Endpoints RESTful para CRUD completo:
+   - `/usuarios`
+   - `/cultivos`
+   - `/diagnosticos`
+- Validación, sanitización y manejo de errores.
+- Integración en la app mediante **Retrofit** y `ApiClient.kt`.
 
-1. Clonar el repositorio:
+### 💬 Foro Comunitario
+- Espacio de comunicación entre usuarios (similar a un chat global).
+- Envío y recepción de mensajes en tiempo real (Firebase Realtime Database o API).
+- Interfaz limpia e intuitiva en `ForoActivity.kt` con Material Design.
 
-   ```bash
-   git clone https://github.com/JohnTigerino/VISOR_HACKATON.git
-   cd VISOR_HACKATON
-   ```
-2. Abrir el proyecto en **Android Studio**.
-3. Esperar a que sincronice las dependencias de **Gradle**.
-4. Conectar un emulador o dispositivo físico.
-5. Ejecutar con el botón ▶️ (Run).
+### 🛒 Marketplace Agrícola
+- Sección para publicar y explorar productos agrícolas.
+- Visualización de nombre, descripción, precio e imagen.
+- Función de refresco mediante `SwipeRefreshLayout`.
 
----
+### 🧠 Arquitectura de Software
+- Implementación basada en el modelo **MVVM (Model–View–ViewModel)**:
+   - **Model:** Gestión de datos y conexión con API / Firebase.
+   - **ViewModel:** Controla la lógica, estados y actualización de vistas.
+   - **View:** Actividades y fragmentos observando `LiveData`.
+- Facilita la escalabilidad, depuración y mantenimiento.
 
-## ✨ Funcionalidades iniciales
+### 🧩 Seguridad y Usabilidad
+- Validación de inputs en formularios (correo, contraseñas, campos vacíos).
+- Sanitización de datos antes del envío a la API.
+- Comunicación segura (HTTPS / configuración `network_security_config.xml`).
+- Alertas y mensajes amigables para el usuario (Toasts, Snackbars, Dialogs).
+- Prevención de acciones accidentales (confirmaciones antes de eliminar).
 
-* Autenticación (login/registro).
-* Pantalla principal con módulos de cultivos.
-* Interfaz con **ConstraintLayout** optimizada para móviles.
-* Estructura lista para integrar análisis con IA y alertas.
-
----
-
-## 📦 Stack técnico
-
-* **Android**: Kotlin, AndroidX, Material 3
-* **Arquitectura**: MVVM (sugerida), ViewModel, LiveData/Flow
-* **Firebase**: Auth, Firestore, Storage, FCM
-
----
-
-## 📁 Estructura del proyecto (resumen)
-
-```text
-app/
-├─ manifests/
-│  └─ AndroidManifest.xml        👉 Declaración de Activities, permisos y tema
-├─ kotlin+java/com/bionica/visor_prueba3/
-│  ├─ AuthActivity.kt            👉 Pantalla de login
-│  ├─ RegisterActivity.kt        👉 Pantalla de registro
-│  └─ HomeActivity.kt            👉 Pantalla principal
-├─ res/
-│  ├─ layout/                    👉 XML de interfaces
-│  ├─ drawable/                  👉 Fondos, botones, formas
-│  ├─ values/                    👉 Colores, strings, temas
-│  ├─ mipmap/                    👉 Íconos de la app
-│  └─ xml/                       👉 Reglas de backup y restore
-└─ build.gradle.kts              👉 Configuración del módulo app
-```
+### 🖥️ Interfaz (UI/UX)
+- Diseño responsivo optimizado para móviles y tabletas.
+- Paleta de colores y elementos inspirados en el logo de VISOR.
+- Implementación de Material 3 y ConstraintLayout adaptativo.
+- Formularios, spinners y toolbars personalizadas.
+- Animaciones sutiles y feedback visual en botones.
 
 ---
 
-## 👥 Contactos
+## ⚙️ Tecnologías Utilizadas
 
-**Equipo VISOR**
+| Categoría | Tecnología |
+|------------|------------|
+| Lenguaje | Kotlin |
+| Arquitectura | MVVM |
+| UI Framework | Android XML + Material Design 3 |
+| Inteligencia Artificial | TensorFlow Lite |
+| Autenticación | Firebase Auth |
+| Base de Datos | MySQL (API REST) |
+| Backend | Node.js + Express |
+| API Client | Retrofit |
+| Almacenamiento | Firebase Firestore / Storage |
+| Chat / Foro | Firebase Realtime Database |
+| Control de versiones | Git + GitHub |
+| Diseño | Figma (Dev Mode) |
 
-* Massiel Torrez – 📧 [massielt054@gmail.com](mailto:massielt054@gmail.com) – 📱 +505 7823-1150
-* Gonzalo Centeno – 📧 [gonzalocenteno343@gmail.com] 📱 +505 7782-4923
-* Shari Ramirez – 📧 [shariramirez239@gmail.com](mailto:shariramirez239@gmail.com) – 📱 +505 7519-2157
-* John Tigerino – 📧 [johntigerino2103@gmail.com](mailto:johntigerino2103@gmail.com) – 📱 +505 8523-5193
-* Oscar Mojica – 📧 [o.gabrielbarrera@gmail.com](mailto:o.gabrielbarrera@gmail) – 📱 +505 8129 0891
+---
+
+## 🧠 Estructura del Proyecto (App Android)
 
